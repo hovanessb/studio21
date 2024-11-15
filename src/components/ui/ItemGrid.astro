@@ -3,8 +3,9 @@ import type { ItemGrid as Props } from '~/types';
 import { twMerge } from 'tailwind-merge';
 import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
+import Image from 'astro/components/Image.astro';
 
-const { items = [], columns, defaultIcon = '', classes = {} } = Astro.props;
+const { items = [], columns, defaultIcon = '', classes = {}} = Astro.props;
 
 const {
   container: containerClass = '',
@@ -32,9 +33,32 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
+      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {}, image={} }) => (
         <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
           <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
+            {
+              
+            <div class="aspect-w-16 aspect-h-7">
+              {
+                image && (
+                  <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
+                    {typeof image === 'string' ? (
+                      <Fragment set:html={image} />
+                    ) : (
+                      <Image
+                        class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
+                        width={250}
+                        height={250}
+                        widths={[400, 768]}
+                        layout="fullWidth"
+                        src= {image.src}
+                        alt={image.alt}
+                      />
+                    )}
+                  </div>
+                )
+              }
+            </div>
             <div class="flex justify-center">
               {(icon || defaultIcon) && (
                 <Icon
@@ -57,7 +81,7 @@ const {
                 </div>
               )}
             </div>
-          </div>
+          </div>}
         </div>
       ))}
     </div>

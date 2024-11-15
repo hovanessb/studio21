@@ -138,7 +138,7 @@ export interface Item {
   icon?: string;
   classes?: Record<string, string>;
   callToAction?: CallToAction;
-  image?: Image;
+  image?: {src: ImageMetadata, alt: string | unknown};
 }
 
 export interface Price {
@@ -194,6 +194,7 @@ export interface ItemGrid {
   columns?: number;
   defaultIcon?: string;
   classes?: Record<string, string>;
+  image?: ImageMetadata;
 }
 
 export interface Collapse {

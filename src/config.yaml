@@ -1,6 +1,6 @@
 site:
-  name: Studio 21
-  site: 'https://Studio21.vercel.app'
+  name: STUDIO 21
+  site: 'https://studio21-green.vercel.app'
   base: '/'
   trailingSlash: false
 
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Studio 21
-    template: '%s — Studio 21'
-  description: "\U0001F680 Studi 21 hair salon, located on 21st Street, San Jose CA, USA."
+    default: STUDIO 21
+    template: '%s — STUDIO 21'
+  description: "\U0001F680 StudiO 21 hair salon, located on 21st Street, San Jose CA, USA."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Studio 21
+    site_name: STUDIO 21
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -69,4 +69,4 @@ analytics:
       id: null # or "G-XXXXXXXXXX"
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'dark' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
