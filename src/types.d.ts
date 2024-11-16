@@ -138,7 +138,7 @@ export interface Item {
   icon?: string;
   classes?: Record<string, string>;
   callToAction?: CallToAction;
-  image?: {src: ImageMetadata, alt: string | unknown};
+  image?: {src: ImageMetadata, alt?: string | null; };
 }
 
 export interface Price {
@@ -218,6 +218,7 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
   content?: string;
   actions?: string | CallToAction[];
   image?: string | unknown;
+  messages? : Array<string> | unknown;
 }
 
 export interface Team extends Omit<Headline, 'classes'>, Widget {
@@ -244,6 +245,7 @@ export interface Brands extends Omit<Headline, 'classes'>, Widget {
 
 export interface Features extends Omit<Headline, 'classes'>, Widget {
   image?: string | unknown;
+  imageText?: string | unknown;
   video?: Video;
   items?: Array<Item>;
   columns?: number;

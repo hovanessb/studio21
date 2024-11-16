@@ -33,14 +33,14 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {}, image={} }) => (
+      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {}, image={alt:""} }) => (
         <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
           <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
             {
               
             <div class="aspect-w-16 aspect-h-7">
               {
-                image && (
+                image.src && (
                   <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
                     {typeof image === 'string' ? (
                       <Fragment set:html={image} />
@@ -50,10 +50,10 @@ const {
                         width={250}
                         height={250}
                         widths={[400, 768]}
-                        layout="fullWidth"
                         src= {image.src}
-                        alt={image.alt}
+                        alt={image.alt ? image.alt : "test"}
                       />
+                     <span class="absolute text-2xl backdrop-hue-rotate-180 bg-orange-300/30 p-8  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-orange-100 text-center">{image.alt ? image.alt : "test"}</span>
                     )}
                   </div>
                 )

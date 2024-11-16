@@ -7,6 +7,7 @@ import bear from '~/assets/images/bear-trim.png';
 import mens from '~/assets/images/menshair.png';
 import shampoo from '~/assets/images/shampoo.png';
 import womens from '~/assets/images/womenshair.png';
+import Testimonials from '~/components/widgets/Testimonials.astro';
 const metadata = {
   title: 'Studio 21 — Hair Salon',
   ignoreTitleTemplate: true,
@@ -15,6 +16,18 @@ const metadata = {
 
 <Layout metadata={metadata}>
 	<Hero
+		messages={[
+			"Your hair is your crown, wear it with confidence.",
+			"Good hair days start here.",
+			"Transform your look, elevate your style.",
+			"Indulge in the luxury of great hair.",
+			"Hair goals, achieved.",
+			"Where beauty meets expertise.",
+			"Your hair, your story, our passion.",
+			"Rediscover your hair's potential.",
+			"Style that speaks volumes.",
+			"Elevate your everyday."
+		]}
 	  actions={[
 		{
 		  variant: 'primary',
@@ -26,6 +39,9 @@ const metadata = {
 	  ]}
 	  image={{ src: '~/assets/images/woman-1774021_1280.jpg', alt: 'Hair Hero Image' }}
 	>
+	<Fragment slot="tagline">
+		STUDIO 21
+	</Fragment>
 	  <Fragment slot="title">
 		Modern Hair Styles on 21st St
 	  </Fragment>
@@ -39,13 +55,41 @@ const metadata = {
 		title="Services"
 		columns={4}
 		items={[
-		{image: {src: bear, alt:'beard trim'}},
-		{image: {src: mens, alt:'mens hair'}},
-		{image: {src: shampoo, alt:'shampoo'}},
-		{image: {src: womens, alt:'womens hair'}}
-		
-
+		{image: {src: bear, alt:'Beards'}},
+		{image: {src: mens, alt:'Mens Hair'}},
+		{image: {src: shampoo, alt:'Womens Hair'}},
+		{image: {src: womens, alt:'Coloring'}}
 		]}
 		classes={{ container: 'max-w-5xl' }}
   />
+
+  <Testimonials
+    title="Words from real customers"
+    testimonials={[
+      {
+        testimonial: `I've been coming to this place ever since my brother told me about it since 2020 and I like that she is able to accommodate the type of hair style that I will show her and she does it`,
+        name: 'Charmaine B.',
+      },
+      {
+        testimonial: `I am so sick of going to haircut shops and having the haircutter not do what I want. Ok so it's only $15 and I'm a guy so it almost doesn't matter. However I want a particular cut is that too much to ask?
+
+Thank you Veronica for listening and getting it right. Now when I go back you ask "the usual?" and I'm like, "please!"
+
+You're my hair cutter now. I got too many things on my mind to worry about my hair. Thank you for taking care of it for me!.`,
+        name: 'Joey P.',
+
+      },
+      {
+        testimonial: `I've been coming to Veronica's for my hair cuts since I was in high school. Over ten years later and I still enjoy her service. She always takes care of me and leaves me looking fresh every time. If you're not sure what to do with your hair or are thinking of changing up your style, she can adapt to it and make anything work. She even lines up my facial hair just the way I like it. Fair prices, excellent customer service and just an overall warm and kind woman. Veronica kicks ass dude! Yeah!`,
+        name: 'Nick T.'
+      },
+    ]}
+    callToAction={{
+      target: '_blank',
+      text: 'More testimonials...',
+      href: 'https://www.yelp.com/biz/veronicas-hair-salon-san-jose',
+      icon: 'tabler:chevron-right',
+    }}
+  />
+
 </Layout>

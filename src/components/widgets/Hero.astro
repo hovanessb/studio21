@@ -7,7 +7,7 @@ import type { Hero as Props } from '~/types';
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
-  tagline,
+  tagline= await Astro.slots.render('tagline'),
 
   content = await Astro.slots.render('content'),
   actions = await Astro.slots.render('actions'),
@@ -15,6 +15,7 @@ const {
 
   id,
   bg = await Astro.slots.render('bg'),
+  messages = await Astro.slots.render('messages'),
 } = Astro.props;
 ---
 
@@ -76,20 +77,23 @@ const {
       >
         {
           image && (
-            <div class="bg-black relative max-h-80 overflow-hidden  maxz-0 w-full">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Image
-                  class=" rounded-md w-full max-h-20 overflow-hidden"
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  loading="eager"
-                  width={1024}
-                  height={576}
-                  {...image}
-                />
-              )}
+            <div class="bg-black relative max-h-80 overflow-hidden maxz-0 w-full">
+              <div class="grid grid-cols-2">
+                {typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class=" rounded-md w-full max-h-20 overflow-hidden"
+                    widths={[400, 768, 1024, 2040]}
+                    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                    loading="eager"
+                    width={1024}
+                    height={576}
+                    {...image}
+                  />
+                )}
+                <p data-messages={messages} class="text-orange-200 pt-24 text-5xl" id="changing"></p>
+              </div>
             </div>
           )
         }
@@ -97,3 +101,30 @@ const {
     </div>
   </div>
 </section>
+
+<script>
+
+  const textElement = document.getElementById('changing');
+  const mess =  textElement?.dataset.messages?.split(".,")
+  if(mess){
+    function typeWriter() {
+      let i = 0;
+      let txt = mess[Math.floor(Math.random() * mess.length)];
+      let speed = 100; // Adjust the typing speed here
+      if(textElement){
+        textElement.innerHTML = ""
+      }
+      function type() {
+        if (i < txt.length && textElement) {
+          textElement.innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+
+      type();
+    }
+    typeWriter()
+    setInterval(typeWriter,4500);
+  }
+</script> 
