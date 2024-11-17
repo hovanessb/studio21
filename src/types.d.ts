@@ -135,10 +135,12 @@ export interface Stat {
 export interface Item {
   title?: string;
   description?: string;
+  price?: string;
   icon?: string;
   classes?: Record<string, string>;
   callToAction?: CallToAction;
   image?: {src: ImageMetadata, alt?: string | null; };
+  href?: string;
 }
 
 export interface Price {

@@ -33,57 +33,61 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {}, image={alt:""} }) => (
-        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-          <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
-            {
-              
-            <div class="aspect-w-16 aspect-h-7">
-              {
-                image.src && (
-                  <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
-                    {typeof image === 'string' ? (
-                      <Fragment set:html={image} />
-                    ) : (
-                      <Image
-                        class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
-                        width={250}
-                        height={250}
-                        widths={[400, 768]}
-                        src= {image.src}
-                        alt={image.alt ? image.alt : "test"}
-                      />
-                     <span class="absolute text-2xl backdrop-hue-rotate-180 bg-orange-300/30 p-8  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-orange-100 text-center">{image.alt ? image.alt : "test"}</span>
-                    )}
-                  </div>
-                )
-              }
-            </div>
-            <div class="flex justify-center">
-              {(icon || defaultIcon) && (
-                <Icon
-                  name={icon || defaultIcon}
-                  class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconClass, itemClasses?.icon)}
-                />
-              )}
-            </div>
-            <div class="mt-0.5">
-              {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
-              {description && (
-                <p
-                  class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
-                  set:html={description}
-                />
-              )}
-              {callToAction && (
-                <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>
-                  <Button variant="link" {...callToAction} />
+      {items.map(({ title, description, icon, callToAction, href, classes: itemClasses = {}, image={alt:""} }) => (
+        <a class="pointer" href={href}>
+            <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+              <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
+                {
+                  
+                <div class="aspect-w-16 aspect-h-7">
+                  {
+                    image.src && (
+                      <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
+                        {typeof image === 'string' ? (
+                          <Fragment set:html={image} />
+                        ) : (
+                          <Image
+                            class="w-full h-80 object-cover mx-auto bg-gray-500 shadow-lg"
+                            width={250}
+                            height={250}
+                            widths={[250, 400,  768]}
+                            src= {image.src}
+                            alt={image.alt ? image.alt : "test"}
+                          />
+                        )}
+                       <span class="text-2xl -right-28   hover:backdrop-brightness-200 hover:text-slate-900 backdrop-hue-rotate-180 bg-orange-300/30 p-8  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-orange-100 text-center">{image.alt ? image.alt : "test"}</span>
+                      </div>
+                    )
+                  }
                 </div>
-              )}
+                <div class="flex justify-center">
+                  {(icon || defaultIcon) && (
+                    <Icon
+                      name={icon || defaultIcon}
+                      class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconClass, itemClasses?.icon)}
+                    />
+                  )}
+                </div>
+                <div class="mt-0.5">
+                  {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
+                  {description && (
+                    <p
+                      class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
+                      set:html={description}
+                    />
+                  )}
+                  {callToAction && (
+                    <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>
+                      <Button variant="link" {...callToAction} />
+                    </div>
+                  )}
+                </div>
+              </div>}
             </div>
-          </div>}
+          </a>
+
+          ))}
         </div>
-      ))}
-    </div>
+
   )
 }

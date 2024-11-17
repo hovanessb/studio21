@@ -1,9 +1,7 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-
+import Layout from '~/layouts/PageLayout.astro'; 
+import whatsapp from '~/assets/images/Digital_Inline_Green.svg'
+import Image from '~/components/common/Image.astro';
 const metadata = {
   title: 'Contact',
 };
@@ -11,33 +9,39 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
+<section class="relative md:-mt-[76px] not-prose" >
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <div class="relative mx-auto">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class="py-12 md:py-20">
+      <div class="text-center pb-8 md:pb-8 max-w-5xl z-20 mx-auto">
+        <h1
+        class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        set:html={metadata.title}
+      />
+      <p
+      class="inline-block mx-auto my-8 text-3xl text-muted -pt-16 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+      >Call or send a text message to this number on WhatsApp<br>Automatically book an appointment</p>
+      <div class="grid mx-auto gap-2 md:gap-y-12 sm:grid-cols-2">
+     
+        <p
+        class="inline-block mx-auto my-8 text-3xl text-muted -pt-16 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        >+1 (408) 234-0437<br>Address: 697 N 21st St<br> San Jose, CA 95112</p>
+        <Image
+        class="w-max-h-20 mt-8 overflow-hidden relative intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        widths={[400]}
+        width={400}
+        sizes="(max-width: 200px) 400px"
+        loading="eager"
+        src={whatsapp}
+        alt="Whats app"
+      />  
+        </p>
+      
+        </div>
+        <iframe width="600" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=-121.88251465559007%2C37.35734923210471%2C-121.8782123923302%2C37.359208311483265&amp;layer=mapnik&amp;marker=37.35827877755023%2C-121.88036352396011" class="w-full"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=37.358279&amp;mlon=-121.880364#map=19/37.358279/-121.880364&amp;layers=N">View Larger Map</a></small>
 
-  <ContactUs
-    id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
-    inputs={[
-      {
-        type: 'text',
-        name: 'name',
-        label: 'Name',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: 'Email',
-      },
-    ]}
-    textarea={{
-      label: 'Message',
-    }}
-    disclaimer={{
-      label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
-    }}
-    description="Our support team typically responds within 24 business hours."
-  />
-
+    </div>
+    </div>
+  </section>
 </Layout>

@@ -8,6 +8,7 @@ import mens from '~/assets/images/menshair.png';
 import shampoo from '~/assets/images/shampoo.png';
 import womens from '~/assets/images/womenshair.png';
 import Testimonials from '~/components/widgets/Testimonials.astro';
+import { getPermalink } from '~/utils/permalinks';
 const metadata = {
   title: 'Studio 21 — Hair Salon',
   ignoreTitleTemplate: true,
@@ -43,7 +44,7 @@ const metadata = {
 		STUDIO 21
 	</Fragment>
 	  <Fragment slot="title">
-		Modern Hair Styles on 21st St
+		Modern Hair Styles on 21st St.
 	  </Fragment>
   
 	  <Fragment slot="subtitle">
@@ -55,10 +56,10 @@ const metadata = {
 		title="Services"
 		columns={4}
 		items={[
-		{image: {src: bear, alt:'Beards'}},
-		{image: {src: mens, alt:'Mens Hair'}},
-		{image: {src: shampoo, alt:'Womens Hair'}},
-		{image: {src: womens, alt:'Coloring'}}
+		{image: {src: bear, alt:'Beards'}, href: getPermalink('/services#cuts')},
+		{image: {src: mens, alt:'Mens Hair'}, href: getPermalink('/services#cuts')},
+		{image: {src: shampoo, alt:'Womens Hair'}, href: getPermalink('/services#cuts')},
+		{image: {src: womens, alt:'Coloring'}, href: getPermalink('/services#color')}
 		]}
 		classes={{ container: 'max-w-5xl' }}
   />
@@ -73,9 +74,9 @@ const metadata = {
       {
         testimonial: `I am so sick of going to haircut shops and having the haircutter not do what I want. Ok so it's only $15 and I'm a guy so it almost doesn't matter. However I want a particular cut is that too much to ask?
 
-Thank you Veronica for listening and getting it right. Now when I go back you ask "the usual?" and I'm like, "please!"
+					Thank you Veronica for listening and getting it right. Now when I go back you ask "the usual?" and I'm like, "please!"
 
-You're my hair cutter now. I got too many things on my mind to worry about my hair. Thank you for taking care of it for me!.`,
+					You're my hair cutter now. I got too many things on my mind to worry about my hair. Thank you for taking care of it for me!.`,
         name: 'Joey P.',
 
       },

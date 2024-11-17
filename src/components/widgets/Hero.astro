@@ -77,13 +77,13 @@ const {
       >
         {
           image && (
-            <div class="bg-black relative max-h-80 overflow-hidden maxz-0 w-full">
+            <div class="bg-gradient-to-r from-white relative max-h-80 overflow-hidden maxz-0 w-full">
               <div class="grid grid-cols-2">
                 {typeof image === 'string' ? (
                   <Fragment set:html={image} />
                 ) : (
                   <Image
-                    class=" rounded-md w-full max-h-20 overflow-hidden"
+                    class="  w-full max-h-20 overflow-hidden"
                     widths={[400, 768, 1024, 2040]}
                     sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                     loading="eager"
@@ -92,7 +92,7 @@ const {
                     {...image}
                   />
                 )}
-                <p data-messages={messages} class="text-orange-200 pt-24 text-5xl" id="changing"></p>
+                <p data-messages={messages} class="hidden sm:block text-black m-16 md:mx-14 md:pt-12 xl:pt-14 text-3xl md:text-5xl" id="changing"></p>
               </div>
             </div>
           )
@@ -102,29 +102,29 @@ const {
   </div>
 </section>
 
-<script>
-
-  const textElement = document.getElementById('changing');
-  const mess =  textElement?.dataset.messages?.split(".,")
-  if(mess){
+<script > 
     function typeWriter() {
-      let i = 0;
-      let txt = mess[Math.floor(Math.random() * mess.length)];
-      let speed = 100; // Adjust the typing speed here
-      if(textElement){
-        textElement.innerHTML = ""
-      }
-      function type() {
-        if (i < txt.length && textElement) {
-          textElement.innerHTML += txt.charAt(i);
-          i++;
-          setTimeout(type, speed);
-        }
-      }
+      let mess = document.getElementById('changing')
 
-      type();
+      if(mess){
+        mess.innerHTML = ""
+        let i = 0;
+        let txt = mess.dataset.messages?.split(".,")[Math.floor(Math.random() * mess.dataset.messages?.split(".,").length)]
+        let speed = 70; // Adjust the typing speed here
+        
+        function type() {
+          if(mess && txt){
+              if (i < txt.length && document.getElementById('changing')) {
+                mess.innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(type, speed);
+              }
+            }
+          }
+          
+          type();
+      }
     }
     typeWriter()
-    setInterval(typeWriter,4500);
-  }
+    setInterval(typeWriter,6000);
 </script> 
