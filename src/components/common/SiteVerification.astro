@@ -1,5 +1,9 @@
 ---
 import { SITE } from 'astrowind:config';
+import  SpeedInsights  from "@vercel/speed-insights/astro"
+import Analytics from '@vercel/analytics/astro'
 ---
 
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}
+<SpeedInsights/>
+<Analytics/>
