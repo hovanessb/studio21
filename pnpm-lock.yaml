@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@astrojs/markdown-remark':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@astrojs/rss':
         specifier: ^4.0.8
         version: 4.0.9
