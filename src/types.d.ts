@@ -135,10 +135,12 @@ export interface Stat {
 export interface Item {
   title?: string;
   description?: string;
+  price?: string;
   icon?: string;
   classes?: Record<string, string>;
   callToAction?: CallToAction;
-  image?: Image;
+  image?: {src: ImageMetadata, alt?: string | null; };
+  href?: string;
 }
 
 export interface Price {
@@ -194,6 +196,7 @@ export interface ItemGrid {
   columns?: number;
   defaultIcon?: string;
   classes?: Record<string, string>;
+  image?: ImageMetadata;
 }
 
 export interface Collapse {
@@ -217,6 +220,7 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
   content?: string;
   actions?: string | CallToAction[];
   image?: string | unknown;
+  messages? : Array<string> | unknown;
 }
 
 export interface Team extends Omit<Headline, 'classes'>, Widget {
@@ -243,6 +247,7 @@ export interface Brands extends Omit<Headline, 'classes'>, Widget {
 
 export interface Features extends Omit<Headline, 'classes'>, Widget {
   image?: string | unknown;
+  imageText?: string | unknown;
   video?: Video;
   items?: Array<Item>;
   columns?: number;

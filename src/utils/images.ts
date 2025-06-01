@@ -1,4 +1,4 @@
-import { isUnpicCompatible, unpicOptimizer, astroAsseetsOptimizer } from './images-optimization';
+import { isUnpicCompatible, unpicOptimizer, astroAsseetsOptimizer } from './images-optimization.ts';
 import type { ImageMetadata } from 'astro';
 import type { OpenGraph } from '@astrolib/seo';
 

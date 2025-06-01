@@ -1,8 +1,8 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro'; 
+import whatsapp from '~/assets/images/Digital_Inline_Green.svg'
+import Image from '~/components/common/Image.astro';
+// Create a single supabase client for interacting with your database
 
 const metadata = {
   title: 'Contact',
@@ -12,68 +12,37 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+</p>
+<section class="relative md:-mt-[76px] not-prose" >
 
-  <ContactUs
-    id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
-    inputs={[
-      {
-        type: 'text',
-        name: 'name',
-        label: 'Name',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: 'Email',
-      },
-    ]}
-    textarea={{
-      label: 'Message',
-    }}
-    disclaimer={{
-      label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
-    }}
-    description="Our support team typically responds within 24 business hours."
-  />
+  <div class="relative mx-auto">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class="py-12 md:py-20">
+      <div class="text-center pb-8 md:pb-8 max-w-5xl z-20 mx-auto">
+        <h1
+        class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        set:html={metadata.title}
+      /> 
+      <div class="grid mx-auto gap-2 md:gap-y-12 sm:grid-cols-2">
+        <p
+        class="inline-block mx-auto my-8 text-3xl text-muted -pt-16 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        >Address: 697 N 21st St<br> San Jose, CA 95112</p>
+        <a  class="text text-md text-cleft align-middle"  href="https://api.whatsapp.com/send?phone=14082340437&text=Hello,%20I%20would%20like%20to%20schedule%20an%20appointment."
+        target="_blank">
+        <Image
+        class="w-max-h-20 mt-8 overflow-hidden relative intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        widths={[400]}
+        width={400}
+        sizes="(max-width: 200px) 400px"
+        loading="eager"
+        src={whatsapp}
+        alt="Whats app"
+      />  </a>
+</div>
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.3326222972455!2d-121.88296592354659!3d37.35830573604013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fcc8b3d3440cd%3A0x15ab725aaba62954!2sVeronica&#39;s%20Hair%20Salon!5e0!3m2!1sen!2sza!4v1746738571652!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="w-full" referrerpolicy="no-referrer-when-downgrade"></iframe> 
 
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="We are here to help!"
-    items={[
-      {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
-      },
-      {
-        title: 'Contact sales',
-        description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
-      },
-      {
-        title: 'Technical support',
-        description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
-      },
-      {
-        title: 'Phone',
-        description: '+1 (234) 567-890',
-        icon: 'tabler:headset',
-      },
-      {
-        title: 'Email',
-        description: 'contact@support.com',
-        icon: 'tabler:mail',
-      },
-      {
-        title: 'Location',
-        description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
-        icon: 'tabler:map-pin',
-      },
-    ]}
-  />
-</Layout>
+    </div>
+    </div>
+  </section>
+</Layout> 

@@ -1,0 +1,103 @@
+---
+ 
+---
+
+<div class="typing-container">
+    <span id="typing-text"></span><span class="cursor"></span>
+</div>
+
+<style>
+    .typing-container {
+        font-family: sans-serif;
+        font-size: 3em;
+        text-align: center;
+        color: #ffffff; /* Adjust color as needed */
+        min-height: 1.5em; /* Prevent layout shift */
+        display: flex; /* Use flex to align text and cursor */
+        justify-content: center;
+        align-items: center;
+    }
+    #typing-text {
+        display: inline-block; /* Helps ensure text doesn't wrap oddly */
+    }
+    .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 1.1em; /* Adjust to match font-size */
+        background-color: #333;
+        margin-left: 5px;
+        vertical-align: middle;
+        animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
+
+<script >
+
+// This is the "frontmatter" where you write your JavaScript/TypeScript that runs at build time or on the server.
+    import { TextPlugin } from 'gsap/TextPlugin';
+    import { gsap } from 'gsap';
+
+    // Register the plugin if it's not already registered elsewhere globally
+    // It's safer to register it where it's used if not relying on a global setup.
+    // If you're importing TextPlugin directly, it might automatically register on import,
+    // but explicitly calling registerPlugin is good practice.
+    gsap.registerPlugin(TextPlugin);
+    // This script runs on the client-side.
+    // The phrases array is passed from the server-side JS into this client-side scope.
+    const phrases = [
+        "Welcome to Veronica's Hair Salon",
+        "Modern Hair Styles on 21st St.",
+        "Established in 2010",
+        "Your hair, our passion",
+        "Book your appointment today!"
+    ];
+    const typingTextElement = document.getElementById('typing-text');
+    let masterTimeline;
+
+    function startTypingEffect() {
+        masterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 }); // Repeat indefinitely with a delay
+
+        phrases.forEach((phrase, index) => {
+            // Type out the phrase
+            masterTimeline.to(typingTextElement, {
+                duration: phrase.length * 0.05,
+                text: phrase,
+                ease: "none"
+            });
+
+            // Add a slight pause after typing
+            masterTimeline.to({}, { duration: 1.5 });
+
+            // Delete the phrase (only if it's not the last one in the array for the current cycle)
+            if (index < phrases.length - 1) {
+                masterTimeline.to(typingTextElement, {
+                    duration: phrase.length * 0.025,
+                    text: "",
+                    ease: "none"
+                });
+                masterTimeline.to({}, { duration: 0.5 }); // Short pause after deleting
+            } else {
+                // If it's the last phrase, clear it after a pause so the next cycle starts fresh
+                 masterTimeline.to(typingTextElement, {
+                    duration: phrase.length * 0.025,
+                    text: "",
+                    ease: "none",
+                    delay: 1.5 // Additional delay before clearing the last phrase
+                });
+            }
+        });
+    }
+
+    // Pass the phrases to the client-side script using a data attribute
+    // This is done in the HTML part, before the script runs.
+    typingTextElement.dataset.phrases = JSON.stringify(phrases);
+
+    // Ensure GSAP is loaded and ready before starting the animation.
+    // Astro's <script type="module"> runs early, so ensure DOM is ready.
+    document.addEventListener('DOMContentLoaded', startTypingEffect);
+</script>
