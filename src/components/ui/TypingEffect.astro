@@ -41,6 +41,7 @@
 // This is the "frontmatter" where you write your JavaScript/TypeScript that runs at build time or on the server.
     import { TextPlugin } from 'gsap/TextPlugin';
     import { gsap } from 'gsap';
+import { nullable } from 'astro:schema';
 
     // Register the plugin if it's not already registered elsewhere globally
     // It's safer to register it where it's used if not relying on a global setup.
@@ -92,12 +93,18 @@
             }
         });
     }
+    if (typingTextElement != null) {
+        // Ensure the element exists before starting the effect
 
-    // Pass the phrases to the client-side script using a data attribute
-    // This is done in the HTML part, before the script runs.
-    typingTextElement.dataset.phrases = JSON.stringify(phrases);
+        // Pass the phrases to the client-side script using a data attribute
+        // This is done in the HTML part, before the script runs.
+        typingTextElement.dataset.phrases = JSON.stringify(phrases);
 
-    // Ensure GSAP is loaded and ready before starting the animation.
-    // Astro's <script type="module"> runs early, so ensure DOM is ready.
-    document.addEventListener('DOMContentLoaded', startTypingEffect);
+        // Ensure GSAP is loaded and ready before starting the animation.
+        // Astro's <script type="module"> runs early, so ensure DOM is ready.
+        document.addEventListener('DOMContentLoaded', startTypingEffect);
+    } else {
+        console.error('Element with id "typing-text" not found.');
+    }
+
 </script>
